@@ -1,25 +1,28 @@
-import logo from './logo.svg';
 import './App.css';
+import AllProducts from './components/homePage/allProducts';
+import {Route, Switch, withRouter, Redirect} from 'react-router-dom';
+import FilteredProducts from './components/homePage/filteredProducts';
+import Menu from './components/homePage/menu/menu';
+import Header from './components/homePage/header/header';
 
-function App() {
+const App= ({location})=> {
+
+    let routes = (
+      <Switch>
+      <Route path="/products/filter"  component={FilteredProducts} /> 
+      <Route path="/products" exact component={AllProducts} /> 
+      <Redirect to="/products"/>
+      </Switch>
+    );
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    
+    <div className="container-fluid">
+      <Header/>
+     <Menu/>
+     {routes}
     </div>
   );
 }
 
-export default App;
+export default withRouter(App);
