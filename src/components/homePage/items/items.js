@@ -1,9 +1,18 @@
-import React from 'react';
+import React, {useState} from 'react';
 import ItemCard from './itemCard';
+import {getAllCategories} from '../../../services/categoriesApiService';
 import './items.css';
 
-
 const Items = (props)=> {
+
+    const [state] = useState({categories: getAllCategories().default});
+
+
+     const convertCategoryId = (id)=> {
+        return (state.categories.find(obj=> obj.id === id)).name;      
+    }
+
+
         return(
         <div className="container">
             <div className="row">
@@ -15,7 +24,7 @@ const Items = (props)=> {
                         name={obj.name}
                         price={obj.price}
                         img={obj.image}
-                        category={obj.categoryId}/>
+                        category={convertCategoryId(obj.categoryId)}/>
                     )
                 })}
             </div>

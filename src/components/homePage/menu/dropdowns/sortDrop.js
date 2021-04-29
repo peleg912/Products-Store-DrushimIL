@@ -1,19 +1,29 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {withRouter} from 'react-router-dom';
+import {getSortBy} from '../../../../services/sortByApiService';
 
 
 const SortDrop = (props)=> {
 
+    const [state, setState] = useState({sortBy: []});
+
+    useEffect(()=> {
+        const sortBy = getSortBy();
+        setState({sortBy: sortBy.default});
+    }, []);
+
     const route = (event)=> {
-        props.history.replace(`/products/filter?sortBy=${event.target.value}`);
+        props.history.replace(`/products?sortBy=${event.target.value}`);
     }
 
     return(
         <select className="form-select" onChange={(event)=>route(event)}>
-            <option defaultValue disabled>Sort By</option>
-            <option value="name">Name</option>
-            <option value="price">Price</option>
-            <option value="category">Category</option>
+            <option value="">Sort By</option>
+            {state.sortBy.map(string=>{
+                return(
+                    <option value={string.toLowerCase()}>{string}</option>
+                )
+            })}
         </select>
     )
 }
