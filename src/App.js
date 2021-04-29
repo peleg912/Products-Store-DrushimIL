@@ -17,8 +17,8 @@ const App= ({location})=> {
     
     <div className="container-fluid">
       <Header/>
-     <Menu/>
-     {routes}
+      <Menu/>
+      {routes}
     </div>
   );
 }

@@ -21,7 +21,7 @@ const SortDrop = (props)=> {
             <option value="">Sort By</option>
             {state.sortBy.map(string=>{
                 return(
-                    <option value={string.toLowerCase()}>{string}</option>
+                    <option key={string} value={string.toLowerCase()}>{string}</option>
                 )
             })}
         </select>

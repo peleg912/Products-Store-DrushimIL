@@ -1,7 +1,9 @@
 import React from 'react';
+import EditModal from './editModal';
 
 const ItemCard = (props)=> {
     return(
+        <>
         <div className="card shadow" style={{width: "18rem"}}>
             <img src={props.img} className="card-img-top" alt="..." style={{padding:"10px"}}/>
             <div className="card-body">
@@ -19,6 +21,9 @@ const ItemCard = (props)=> {
                 </button>
             </div>
          </div>
+
+         <EditModal/>
+         </>
     )
 }
 
